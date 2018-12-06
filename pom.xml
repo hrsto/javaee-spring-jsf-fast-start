@@ -10,7 +10,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>9</java.version>
+    <java.version>10</java.version>
+    <jsf.version>2.2.18</jsf.version>
   </properties>
   <dependencies>
     <dependency>
@@ -33,13 +34,16 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>5.1.42</version>
     </dependency> -->
-
-    <!-- Example local library depedency -->
-    <!-- <dependency>
-        <groupId>cms</groupId>
-        <artifactId>cms-plugin-api</artifactId>
-        <version>0.1</version>
-    </dependency> -->
+    <dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${jsf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>${jsf.version}</version>
+		</dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
