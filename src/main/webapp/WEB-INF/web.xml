@@ -5,11 +5,15 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/conf/spring-config.xml</param-value>
         </context-param>
+        <context-param>
+            <param-name>javax.faces.PROJECT_STAGE</param-name>
+            <param-value>Development</param-value>
+        </context-param>
 
         <listener>
             <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
         </listener>
-        <servlet>
+        <!-- <servlet>
             <servlet-name>Main</servlet-name>
             <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
             <load-on-startup>1</load-on-startup>
@@ -17,7 +21,21 @@
         <servlet-mapping>
             <servlet-name>Main</servlet-name>
             <url-pattern>/</url-pattern>
+        </servlet-mapping> -->
+
+        <servlet>
+            <servlet-name>Faces Servlet</servlet-name>
+            <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+            <load-on-startup>1</load-on-startup>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>Faces Servlet</servlet-name>
+            <url-pattern>*.xhtml</url-pattern>
         </servlet-mapping>
+
+        <welcome-file-list>
+            <welcome-file>pages/index.xhtml</welcome-file>
+        </welcome-file-list>
 <!--  -->
 
     <session-config>

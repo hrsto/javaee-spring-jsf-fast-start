@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+	<bean id="Locale_EN" class="java.util.Locale">
+		<constructor-arg value="en"/>
+		<constructor-arg value="US"/>
+	</bean>
+	<bean id="Locale_FR" class="java.util.Locale">
+		<constructor-arg value="fr"/>
+		<constructor-arg value="FR"/>
+	</bean>
 
-    <bean id="Main" class="com.webarity.Main">
-        <property name="someParam" value="set via spring xml config" />
-    </bean>
+    <!-- <bean id="siteLocales" class="com.webarity.SiteLocale"> //this thing is specified in faces-config.xml
+        <property name="locales">
+            <list>
+                <ref bean="Locale_EN"/>
+                <ref bean="Locale_FR"/>
+            </list>
+        </property>
+    </bean> -->
 </beans>

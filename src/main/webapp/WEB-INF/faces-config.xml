@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <name>JavaEE Spring and JSF Fast Start</name>
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+
+		<resource-bundle>
+			<base-name>localization.GeneralMessages</base-name>
+			<var>commonMsgs</var>
+		</resource-bundle>
+    </application>
+
+	<locale-config>
+		<default-locale>fr</default-locale>
+		<supported-locale>en</supported-locale>
+		<supported-locale>fr</supported-locale>
+	</locale-config>
+
+    <managed-bean>
+		<managed-bean-name>Main</managed-bean-name>
+		<managed-bean-class>com.webarity.Main</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>someParam</property-name>
+			<value>set via JSF context 1</value>
+		</managed-property>
+		<managed-property>
+			<property-name>someParam2</property-name>
+			<value>set via JSF context 2</value>
+		</managed-property>
+	</managed-bean>
+
+    <managed-bean>
+		<managed-bean-name>siteLocales</managed-bean-name>
+		<managed-bean-class>com.webarity.SiteLocale</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>locales</property-name>
+			<map-entries>
+				<key-class>java.lang.String</key-class>
+				<value-class>java.util.Locale</value-class>
+				<map-entry>
+					<key>#{Locale_EN.getLanguage()}</key>
+					<value>#{Locale_EN}</value>
+				</map-entry>
+				<map-entry>
+					<key>#{Locale_FR.getLanguage()}</key>
+					<value>#{Locale_FR}</value>
+				</map-entry>
+			</map-entries>
+		</managed-property>
+	</managed-bean>
+
+</faces-config>
