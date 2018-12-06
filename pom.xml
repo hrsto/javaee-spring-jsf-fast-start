@@ -1,0 +1,182 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.webarity</groupId>
+  <artifactId>javaee-spring-jsf-fast-start</artifactId>
+  <packaging>war</packaging>
+  <version>0.1-SNAPSHOT</version>
+  <name>${project.artifactId}</name>
+  <url>http://www.webarity.com</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>9</java.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.0.2</version>
+      <scope>test</scope>
+    </dependency>
+    <!--Below depedency is for running junit4 tests-->
+    <!--<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>-->
+
+    <!-- MySQL example depedency -->
+    <!-- <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.42</version>
+    </dependency> -->
+
+    <!-- Example local library depedency -->
+    <!-- <dependency>
+        <groupId>cms</groupId>
+        <artifactId>cms-plugin-api</artifactId>
+        <version>0.1</version>
+    </dependency> -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.1.2.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.1.2.RELEASE</version>
+    </dependency>
+  </dependencies>
+    <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <!-- <verbose>true</verbose> -->
+          <!-- <source>1.8</source> -->
+          <!-- <target>1.8</target> -->
+          <!-- <showWarnings>true</showWarnings> -->
+          <!-- <showDeprecation>true</showDeprecation> -->
+          <!-- <compilerArguments>
+              
+          </compilerArguments> -->
+          <release>${java.version}</release>
+        </configuration>
+      </plugin>
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-toolchains-plugin</artifactId>
+        <configuration>
+          <toolchains>
+            <jdk>
+              <version>9.0.1</version>
+              <vendor>oracle</vendor>
+            </jdk>
+          </toolchains>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>toolchain</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin> -->
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
+          <configuration>
+              <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+            <execution>
+                <phase>validate</phase>
+                <goals>
+                    <goal>copy</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${endorsed.dir}</outputDirectory>
+                    <silent>true</silent>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>javax</groupId>
+                            <artifactId>javaee-endorsed-api</artifactId>
+                            <version>7.0</version>
+                            <type>jar</type>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19</version>
+          <configuration>
+            <!-- <includes>
+              <include>**/Test*.java</include>
+              <include>**/*Test.java</include>
+              <include>**/*Tests.java</include>
+              <include>**/*TestCase.java</include>
+            </includes> -->
+            <!-- <parallel>methods</parallel>
+            <threadCount>16</threadCount> -->
+            <properties>
+              <!--To filter tests by tags. Can also use groups instead of includeTags and excludedGroups instead of excludeTags.-->
+              <!--Format is: <includeTags>tagA, tagB, tagN, etc</includeTags>-->
+              <!--<includeTags></includeTags>-->
+              <!--<excludeTags></excludeTags>-->
+              <configurationParameters>
+                <!--Using the java .properties file syntax, i.e. key=value, can set junit configuration properties-->
+                <!--Examples:
+                junit.jupiter.testinstance.lifecycle.default = per_class
+                junit.jupiter.conditions.deactivate = *
+                -->
+              </configurationParameters>
+            </properties>
+          </configuration>
+          <dependencies>
+              <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-surefire-provider</artifactId>
+                <version>1.0.2</version>
+              </dependency>
+              <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.0.2</version>
+              </dependency>
+              <!--Below depedency is for running junit4 tests-->
+              <!--<dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>4.12.2</version>
+              </dependency>-->
+          </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+</project>
