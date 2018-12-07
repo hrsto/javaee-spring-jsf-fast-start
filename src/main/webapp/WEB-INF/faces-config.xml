@@ -17,7 +17,7 @@
     </application>
 
 	<locale-config>
-		<default-locale>bg</default-locale>
+		<default-locale>en</default-locale>
 		<supported-locale>en</supported-locale>
 		<supported-locale>fr</supported-locale>
 		<supported-locale>bg</supported-locale>
@@ -41,10 +41,10 @@
 		<managed-bean-name>siteLocales</managed-bean-name>
 		<managed-bean-class>com.webarity.SiteLocale</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
-		<!-- <managed-property>
+		<managed-property>
 			<property-name>currentLocale</property-name>
-			<value>#{Locale_FR}</value>
-		</managed-property> -->
+			<value>#{Locale_EN}</value>
+		</managed-property>
 		<managed-property>
 			<property-name>locales</property-name>
 			<map-entries>
