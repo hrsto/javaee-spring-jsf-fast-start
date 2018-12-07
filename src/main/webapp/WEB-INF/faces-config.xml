@@ -21,6 +21,12 @@
 			<supported-locale>fr</supported-locale>
 			<supported-locale>bg</supported-locale>
 		</locale-config>
+
+		<converter>
+			<description>Convert from language code to Locale and back again.</description>
+			<converter-id>LocaleConverter</converter-id>
+			<converter-class>com.webarity.converters.LocaleStringConverter</converter-class>
+		</converter>
     </application>
 
 
@@ -44,7 +50,7 @@
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
 			<property-name>currentLocale</property-name>
-			<null-value/>
+			<value>#{Locale_EN}</value>
 		</managed-property>
 		<managed-property>
 			<property-name>locales</property-name>

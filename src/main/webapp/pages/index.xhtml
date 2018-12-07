@@ -11,7 +11,8 @@
         <div><h:outputText id="thing3" value="#{commonMsgs.someTestMessage}" /></div>
 
         <h:form>
-            <h:selectOneMenu id="languageSelector">
+            
+            <h:selectOneMenu id="languageSelector" validator="#{siteLocales.validate}" value="#{siteLocales.currentLocale}">
                 <f:selectItem
                     itemLabel="----"
                     noSelectionOption="true"
@@ -22,6 +23,8 @@
                     itemValue="#{loc.getLanguage()}"
                     itemLabel="#{loc.getDisplayName(loc)}"
                 />
+                <f:converter converterId="LocaleConverter" />
+                <h:message for="languageSelector"/>
                 <f:ajax execute="languageSelector" event="change" render="thing3 siteTitle" listener="#{siteLocales.handleLocaleChange}" />
             </h:selectOneMenu>    
         </h:form>
