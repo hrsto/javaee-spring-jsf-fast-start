@@ -1,8 +1,6 @@
 package com.webarity.listeners;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.faces.application.Application;
