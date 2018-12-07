@@ -31,6 +31,7 @@ public class LocalePhaseListener implements PhaseListener {
         FacesContext tempExtCtx = FacesContext.getCurrentInstance();
         UIViewRoot tempUIViewRoot = tempExtCtx.getViewRoot();
         Application tempApp = tempExtCtx.getApplication();
+        Locale l = tempApp.evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class);
         tempUIViewRoot.setLocale(
             Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class))
                 .orElseGet(

@@ -38,7 +38,8 @@ public class SiteLocale {
         if (ev.getSource() instanceof HtmlSelectOneMenu) {
             HtmlSelectOneMenu temp = (HtmlSelectOneMenu)ev.getSource();
             setCurrentLocale((Locale)temp.getValue());
-            
+            // setCurrentLocale(locales.get(((Locale)temp.getValue()).getLanguage()));
+
         }
     }
 
