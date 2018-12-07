@@ -1,8 +1,11 @@
 package com.webarity.listeners;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.faces.application.Application;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -21,12 +24,22 @@ public class LocalePhaseListener implements PhaseListener {
 
     }
 
+    /**
+     * <p>Change locale for requests across the app. Takes into consideration HttpSession. Also takes the http request header and checks if it the requested Locale is in the supported list. If it is, and if the the user has not chosen a specific Locale ({@link com.webarity.SiteLocale#setCurrentLocale(Locale) SiteLocale's currentLocale}), it will use that Locale. Otherwise, fallback to the default locale, set via {@literal faces-config.xml}.</p>
+     * FIXME: check if the HttpRequest returns a null from the call to getRequestLocale()
+     */
     @Override
     public void beforePhase(PhaseEvent event) {
         FacesContext tempExtCtx = FacesContext.getCurrentInstance();
         UIViewRoot tempUIViewRoot = tempExtCtx.getViewRoot();
-        Optional.ofNullable(tempExtCtx.getApplication().evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class))
-            .ifPresentOrElse(locale -> tempUIViewRoot.setLocale(locale), () -> tempUIViewRoot.setLocale(Locale.ROOT));
+        Application tempApp = tempExtCtx.getApplication();
+        tempUIViewRoot.setLocale(
+            Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class))
+                .orElseGet(
+                    () -> Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, String.format("#{siteLocales.getSupportedLocale('%s')}", tempExtCtx.getExternalContext().getRequestLocale().getLanguage()), Locale.class))
+                    .orElseGet(()-> tempExtCtx.getApplication().getDefaultLocale())
+                )
+        );
     }
 
     @Override

@@ -30,6 +30,10 @@ public class SiteLocale {
     public Map<String, Locale> getLocales() {return this.locales;}
     public void setLocales(Map<String, Locale> locales) {this.locales = locales;}
 
+    public Locale getSupportedLocale(String language) {
+        return locales.get(language);
+    }
+
     public void handleLocaleChange(AjaxBehaviorEvent ev) {
         if (ev.getSource() instanceof HtmlSelectOneMenu) {
             HtmlSelectOneMenu temp = (HtmlSelectOneMenu)ev.getSource();

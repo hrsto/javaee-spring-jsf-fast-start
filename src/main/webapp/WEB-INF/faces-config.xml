@@ -14,14 +14,15 @@
 			<base-name>localization.GeneralMessages</base-name>
 			<var>commonMsgs</var>
 		</resource-bundle>
+
+		<locale-config>
+			<default-locale>fr</default-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>fr</supported-locale>
+			<supported-locale>bg</supported-locale>
+		</locale-config>
     </application>
 
-	<locale-config>
-		<default-locale>en</default-locale>
-		<supported-locale>en</supported-locale>
-		<supported-locale>fr</supported-locale>
-		<supported-locale>bg</supported-locale>
-	</locale-config>
 
     <managed-bean>
 		<managed-bean-name>Main</managed-bean-name>
@@ -43,7 +44,7 @@
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
 			<property-name>currentLocale</property-name>
-			<value>#{Locale_EN}</value>
+			<null-value/>
 		</managed-property>
 		<managed-property>
 			<property-name>locales</property-name>
