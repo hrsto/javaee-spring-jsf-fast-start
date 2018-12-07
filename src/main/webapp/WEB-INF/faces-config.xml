@@ -3,6 +3,10 @@
 
     <name>JavaEE Spring and JSF Fast Start</name>
 
+	<lifecycle>
+        <phase-listener>com.webarity.listeners.LocalePhaseListener</phase-listener>
+    </lifecycle>
+
     <application>
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 
@@ -13,9 +17,10 @@
     </application>
 
 	<locale-config>
-		<default-locale>fr</default-locale>
+		<default-locale>bg</default-locale>
 		<supported-locale>en</supported-locale>
 		<supported-locale>fr</supported-locale>
+		<supported-locale>bg</supported-locale>
 	</locale-config>
 
     <managed-bean>
@@ -36,6 +41,10 @@
 		<managed-bean-name>siteLocales</managed-bean-name>
 		<managed-bean-class>com.webarity.SiteLocale</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<!-- <managed-property>
+			<property-name>currentLocale</property-name>
+			<value>#{Locale_FR}</value>
+		</managed-property> -->
 		<managed-property>
 			<property-name>locales</property-name>
 			<map-entries>
@@ -48,6 +57,10 @@
 				<map-entry>
 					<key>#{Locale_FR.getLanguage()}</key>
 					<value>#{Locale_FR}</value>
+				</map-entry>
+				<map-entry>
+					<key>#{Locale_BG.getLanguage()}</key>
+					<value>#{Locale_BG}</value>
 				</map-entry>
 			</map-entries>
 		</managed-property>

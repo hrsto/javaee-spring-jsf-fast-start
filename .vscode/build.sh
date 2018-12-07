@@ -19,7 +19,7 @@ tomcatServerAddr='http://localhost:8080'
 
 case $1 in
     "build")
-        mvn $opts package
+        mvn $opts package -Dmaven.test.skip=true 
         rsync -av --delete target/${projectName}/ ${tomcatDir}/${projectName}
         curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/reload?path=/${projectName}
     ;;

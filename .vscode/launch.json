@@ -9,8 +9,8 @@
             "type": "java",
             "name": "Debug (Attach)",
             "request": "attach",
-            "hostName": "192.168.0.11",
-            "port": 8787
+            "hostName": "localhost",
+            "port": 8000
         }
     ]
 }
