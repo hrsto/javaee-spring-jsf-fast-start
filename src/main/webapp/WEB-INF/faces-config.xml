@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-    <name>JavaEE Spring and JSF Fast Start</name>
+    <name>JavaEESpringJSFFastStart</name>
 
 	<lifecycle>
         <phase-listener>com.webarity.listeners.LocalePhaseListener</phase-listener>
@@ -16,13 +16,19 @@
 		</resource-bundle>
 
 		<locale-config>
-			<default-locale>en</default-locale>
-			<supported-locale>en</supported-locale>
-			<supported-locale>fr</supported-locale>
+			<default-locale>en_US</default-locale>
+			<supported-locale>en_US</supported-locale>
+			<supported-locale>fr_FR</supported-locale>
 			<supported-locale>bg</supported-locale>
 		</locale-config>
+
     </application>
 
+	<converter>
+		<description>Convert from language code to Locale and back again.</description>
+		<converter-id>LocaleConverter</converter-id>
+		<converter-class>com.webarity.converters.LocaleStringConverter</converter-class>
+	</converter>
 
     <managed-bean>
 		<managed-bean-name>Main</managed-bean-name>
@@ -43,24 +49,20 @@
 		<managed-bean-class>com.webarity.SiteLocale</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-			<property-name>currentLocale</property-name>
-			<null-value/>
-		</managed-property>
-		<managed-property>
 			<property-name>locales</property-name>
 			<map-entries>
 				<key-class>java.lang.String</key-class>
 				<value-class>java.util.Locale</value-class>
 				<map-entry>
-					<key>#{Locale_EN.getLanguage()}</key>
+					<key>en_US</key>
 					<value>#{Locale_EN}</value>
 				</map-entry>
 				<map-entry>
-					<key>#{Locale_FR.getLanguage()}</key>
+					<key>fr_FR</key>
 					<value>#{Locale_FR}</value>
 				</map-entry>
 				<map-entry>
-					<key>#{Locale_BG.getLanguage()}</key>
+					<key>bg</key>
 					<value>#{Locale_BG}</value>
 				</map-entry>
 			</map-entries>

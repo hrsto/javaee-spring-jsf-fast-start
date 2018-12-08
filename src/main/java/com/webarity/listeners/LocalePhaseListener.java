@@ -34,7 +34,7 @@ public class LocalePhaseListener implements PhaseListener {
         tempUIViewRoot.setLocale(
             Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class))
                 .orElseGet(
-                    () -> Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, String.format("#{siteLocales.getSupportedLocale('%s')}", tempExtCtx.getExternalContext().getRequestLocale().getLanguage()), Locale.class))
+                    () -> Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, String.format("#{siteLocales.getSupportedLocale('%s')}", tempExtCtx.getExternalContext().getRequestLocale().toString()), Locale.class))
                     .orElseGet(()-> tempExtCtx.getApplication().getDefaultLocale())
                 )
         );
