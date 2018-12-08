@@ -11,7 +11,7 @@ public class LocaleStringConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.isEmpty()) return null;
-        return Locale.forLanguageTag(value);
+        return Locale.forLanguageTag(value.replace("_", "-"));
     }
 
     @Override

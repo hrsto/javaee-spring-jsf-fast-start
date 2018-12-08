@@ -24,20 +24,23 @@ case $1 in
         curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/reload?path=/${projectName}
     ;;
     "justrun")
-    
+
     ;;
     "test")
         mvn $opts test
     ;;
     "clean")
+        curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/stop?path=/${projectName}
+        curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/undeploy?path=/${projectName}
         mvn $opts clean
     ;;
-    "verify")
-        mvn $opts verify
+    "restart")
+        curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/stop?path=/${projectName}
+        curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/start?path=/${projectName}
     ;;
-    "execute")
-        
+    "sync")
+        curl --user ${tomcatServerAuth} ${tomcatServerAddr}/manager/text/reload?path=/${projectName}
     ;;
-    *) echo "Supply build|justrun|test|clean|verify|execute"
+    *) echo "Supply build|justrun|test|clean|restart|sync"
     ;;
 esac

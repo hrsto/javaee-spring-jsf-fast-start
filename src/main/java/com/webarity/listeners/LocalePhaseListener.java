@@ -31,11 +31,10 @@ public class LocalePhaseListener implements PhaseListener {
         FacesContext tempExtCtx = FacesContext.getCurrentInstance();
         UIViewRoot tempUIViewRoot = tempExtCtx.getViewRoot();
         Application tempApp = tempExtCtx.getApplication();
-        Locale l = tempApp.evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class);
         tempUIViewRoot.setLocale(
             Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, "#{siteLocales.currentLocale}", Locale.class))
                 .orElseGet(
-                    () -> Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, String.format("#{siteLocales.getSupportedLocale('%s')}", tempExtCtx.getExternalContext().getRequestLocale().getLanguage()), Locale.class))
+                    () -> Optional.ofNullable(tempApp.evaluateExpressionGet(tempExtCtx, String.format("#{siteLocales.getSupportedLocale('%s')}", tempExtCtx.getExternalContext().getRequestLocale().toString()), Locale.class))
                     .orElseGet(()-> tempExtCtx.getApplication().getDefaultLocale())
                 )
         );

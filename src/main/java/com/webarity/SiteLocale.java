@@ -38,14 +38,12 @@ public class SiteLocale {
         if (ev.getSource() instanceof HtmlSelectOneMenu) {
             HtmlSelectOneMenu temp = (HtmlSelectOneMenu)ev.getSource();
             setCurrentLocale((Locale)temp.getValue());
-            // setCurrentLocale(locales.get(((Locale)temp.getValue()).getLanguage()));
-
         }
     }
 
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-		if (!locales.containsKey(((Locale)value).getLanguage())) {
+		if (!locales.containsKey(((Locale)value).toString())) {
             throw new ValidatorException(new FacesMessage("Language not supported"));
         }
 	}
