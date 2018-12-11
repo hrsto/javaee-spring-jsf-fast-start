@@ -11,9 +11,11 @@ xmlns:wacc="http://www.webarity.com/webarity/file-uploader"
         <div><h:outputText id="thing" value="#{Main.someParam}" /></div>
         <div><h:outputText id="thing2" value="#{Main.someParam2}" /></div>
         <div><h:outputText id="thing3" value="#{commonMsgs.someTestMessage}" /></div>
-        <h:form enctype="multipart/form-data">
+        
+        
+        <h:form id="someForm" method="post" enctype="multipart/form-data">
             <wacc:fileUploader someArg="#{Main.someParam2}" maxFiles="2"/>
-            <h:commandButton value="submit" action="#{fileUploader.submit()}"/>
+            <h:commandButton value="submit" action="#{fileUploader.submit}"/>
         </h:form>
         
 

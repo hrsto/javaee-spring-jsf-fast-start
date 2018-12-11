@@ -8,6 +8,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 @FacesRenderer(componentFamily="webarity-renderers", rendererType="file-upload-renderer")
 public class FileUploadRenderer extends Renderer {
@@ -21,19 +23,18 @@ public class FileUploadRenderer extends Renderer {
         String tagWrapper = Optional.ofNullable(up.getWrapper()).orElse("div");
 
         try (ResponseWriter w = ctx.getResponseWriter();) {
-            w.startElement("form", up);
             w.startElement(tagWrapper, up);
             
             w.startElement("input", up);
             w.writeAttribute("type", "file", null);
             w.writeAttribute("id", "fileUpload", null);
+            w.writeAttribute("name", up.getClientId(), "clientId");
             if (up.getMaxFiles() != null && up.getMaxFiles() > 1) {
                 w.writeAttribute("multiple", "", null);
             }
             w.endElement("input");
 
             w.endElement(tagWrapper);
-            w.endElement("form");
         } catch (IOException ex) {
             throw ex;
         }
@@ -41,6 +42,15 @@ public class FileUploadRenderer extends Renderer {
 
     @Override
     public void decode(FacesContext ctx, UIComponent comp) {
+        HttpServletRequest rq = (HttpServletRequest) ctx.getExternalContext().getRequest();
+        try {
+            rq.getParts().stream().forEach(part -> {
+                System.out.println(String.format("name: %s; size: %d, type: %s", part.getName(), part.getSize(),
+                        part.getContentType()));
+            });
+        } catch (IOException | ServletException ex) {
+            ex.printStackTrace();
+		}
         comp.getAttributes();
     }
 }

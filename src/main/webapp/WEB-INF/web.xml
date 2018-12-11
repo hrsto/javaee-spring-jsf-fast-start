@@ -30,6 +30,9 @@
             <servlet-name>Faces Servlet</servlet-name>
             <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
             <load-on-startup>1</load-on-startup>
+            <multipart-config>
+                <max-file-size>20848820</max-file-size>
+            </multipart-config>
         </servlet>
         <servlet-mapping>
             <servlet-name>Faces Servlet</servlet-name>
