@@ -2,6 +2,7 @@ package com.webarity.fileUpload;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -42,15 +43,25 @@ public class FileUploadRenderer extends Renderer {
 
     @Override
     public void decode(FacesContext ctx, UIComponent comp) {
+        if (ctx == null || comp == null) throw new NullPointerException();
+        UIFileUpload up = (UIFileUpload)comp;
         HttpServletRequest rq = (HttpServletRequest) ctx.getExternalContext().getRequest();
         try {
-            rq.getParts().stream().forEach(part -> {
-                System.out.println(String.format("name: %s; size: %d, type: %s", part.getName(), part.getSize(),
-                        part.getContentType()));
-            });
+            up.setSubmittedValue(rq.getParts().stream()
+            .filter(part -> part.getSubmittedFileName() != null && !part.getSubmittedFileName().isEmpty())
+            .map(part -> {
+                        try {
+                            return new UploadedFile(part.getSubmittedFileName(), part.getInputStream().readAllBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+            })
+            .filter(byteFile -> byteFile != null)
+            .collect(Collectors.toList())
+            );
         } catch (IOException | ServletException ex) {
             ex.printStackTrace();
 		}
-        comp.getAttributes();
     }
 }

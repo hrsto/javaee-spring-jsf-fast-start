@@ -1,21 +1,23 @@
 package com.webarity;
 
-import java.io.File;
+import java.util.List;
 import java.util.Map;
+
+import com.webarity.fileUpload.UploadedFile;
 
 public class FileHoldingBean {
 
-    private Map<String, File> files;
+    private List<UploadedFile> files;
 
-    public Map<String, File> getFiles() {
+    public List<UploadedFile> getFiles() {
         return files;
     }
-    public void setFiles(Map<String, File> files) {
+    public void setFiles(List<UploadedFile> files) {
         this.files = files;
     }
 
-    public Object submit() {
+    public void submit() {
         System.out.println("here be files");
-        return null;
+        files.forEach(file -> System.out.println(String.format("Received: %s, size is: %d", file.getFileName(), file.getData().length)));
     }
 }
