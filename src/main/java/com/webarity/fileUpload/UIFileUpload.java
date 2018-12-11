@@ -5,11 +5,12 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIInput;
 
+//http://balusc.omnifaces.org/2009/12/uploading-files-with-jsf-20-and-servlet.html
+
 @ResourceDependencies({
     @ResourceDependency(name="jsf.js", library="javax.faces", target="head"),
     @ResourceDependency(name="fileUploader.js", target="head")
 })
-
 @FacesComponent("FileUploader")
 public class UIFileUpload extends UIInput {
 
