@@ -1,0 +1,10 @@
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    <namespace>http://www.webarity.com/webarity/file-uploader</namespace>
+    <tag>
+        <tag-name>fileUploader</tag-name>
+        <component>
+            <component-type>FileUploader</component-type>
+            <renderer-type>file-upload-renderer</renderer-type>
+        </component>
+    </tag>
+</facelet-taglib>

@@ -31,6 +31,12 @@
 	</converter>
 
     <managed-bean>
+		<managed-bean-name>fileUploader</managed-bean-name>
+		<managed-bean-class>com.webarity.FileHoldingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+    <managed-bean>
 		<managed-bean-name>Main</managed-bean-name>
 		<managed-bean-class>com.webarity.Main</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
