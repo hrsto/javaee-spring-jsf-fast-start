@@ -14,7 +14,7 @@ xmlns:wacc="http://www.webarity.com/webarity/file-uploader"
         
         
         <h:form id="someForm" method="post" enctype="multipart/form-data">
-            <wacc:fileUploader someArg="#{Main.someParam2}" maxFiles="2" value="#{fileUploader.files}"/>
+            <wacc:fileUploader someArg="#{Main.someParam2}" maxFiles="2" value="#{fileUploader.files}" type="#{'ws-file-upload-renderer'}" endpoint="#{'wsUpload'}" wsRootPrefix="#{'javaee-spring-jsf-fast-start-0.1-SNAPSHOT'}" />
             <h:commandButton value="submit" action="#{fileUploader.submit}"/>
         </h:form>
         

@@ -1,7 +1,6 @@
 package com.webarity;
 
 import java.util.List;
-import java.util.Map;
 
 import com.webarity.fileUpload.UploadedFile;
 
@@ -18,6 +17,7 @@ public class FileHoldingBean {
 
     public void submit() {
         System.out.println("here be files");
+        if (files == null) return;
         files.forEach(file -> System.out.println(String.format("Received: %s, size is: %d", file.getFileName(), file.getData().length)));
     }
 }
