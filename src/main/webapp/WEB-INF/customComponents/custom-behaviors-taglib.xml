@@ -1,0 +1,10 @@
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    <namespace>http://www.webarity.com/webarity/custom-behaviors</namespace>
+    <tag>
+        <tag-name>webSocketUploadBehavior</tag-name>
+        <!-- <behavior>
+            <behavior-id>wsupld</behavior-id>
+        </behavior> -->
+        <handler-class>com.webarity.fileUpload.customBehaviors.WsUploadTag</handler-class>
+    </tag>
+</facelet-taglib>

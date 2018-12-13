@@ -5,6 +5,10 @@
 			<param-value>/WEB-INF/customComponents/file-uploader-taglib.xml</param-value>
 		</context-param>    
         <context-param>
+			<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+			<param-value>/WEB-INF/customComponents/custom-behaviors-taglib.xml</param-value>
+		</context-param>    
+        <context-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/conf/spring-config.xml</param-value>
         </context-param>
